@@ -40,3 +40,14 @@ button {
     font-size: 24px;
 }
 
+.operand {
+    background-color: #e1dbd6;
+}
+
+.operator {
+    background-color: #FFEE93;
+}
+
+.special {
+    background-color: #ffc09f;
+}
