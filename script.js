@@ -1,3 +1,6 @@
+const buttons = document.querySelectorAll("button");
+
+
 function add(a, b) {
     return a + b;
 }
@@ -33,3 +36,10 @@ function operate(a, b, operator) {
 
     return result;
 }
+
+
+buttons.forEach(button => {
+    button.addEventListener("click", function(e) {
+        console.log(e.target.value);
+    });
+})
