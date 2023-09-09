@@ -1,0 +1,42 @@
+body {
+    background-color: #e1dbd6;
+    font-family: "Monaco";
+}
+
+.calculator {
+    background-color:  #C1CCCA;
+    width: 400px;
+    height: auto;
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 22px;
+    margin: auto;
+    margin-top: 75px;
+}
+
+.display {
+    background-color: #e1dbd6;
+    width: 360px;
+    height: 150px;
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 5px;
+    margin: auto;
+    margin-top: 18px;
+}
+
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 10px;
+    padding: 18px;
+}
+
+button {
+    height: 60px;
+    padding: 0;
+    border-width: 2px;
+    border-radius: 5px;
+    font-size: 24px;
+}
+
