@@ -69,7 +69,9 @@ function getPercent() {
 }
 
 function appendDecimal() {
-    numberDisplay.textContent += ".";
+    if (!numberDisplay.textContent.includes(".")) {
+        numberDisplay.textContent += ".";
+    }
 }
 
 function changePolarity() {
