@@ -23,27 +23,7 @@ function multiply(a, b) {
 }
 
 function divide(a, b) {
-    return a / b;
-}
-
-function operate(a, b, operator) {
-    let result;
-    switch (operator) {
-        case "+":
-            result = add(a, b);
-            break;
-        case "-":
-            result = subtract(a, b);
-            break;
-        case "x":
-            result = multiply(a, b);
-            break;
-        case "÷":
-            result = divide(a, b);
-            break;
-    }
-
-    return result;
+        return a / b;
 }
 
 function resetDisplay () {
@@ -117,7 +97,13 @@ function operation() {
             result = multiply(firstOperand, secondOperand);
             break;
         case "÷":
-            result = divide(firstOperand, secondOperand);
+            if (secondOperand === 0) {
+                alert("YOU CAN'T DIVIDE BY 0! C'MON IT'S BASIC MATH!");
+                result = "Error";
+                allClear();
+            } else {
+                result = divide(firstOperand, secondOperand);
+            }
             break;
     }
 
