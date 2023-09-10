@@ -45,10 +45,6 @@ function operate(a, b, operator) {
     return result;
 }
 
-function getPercent(value) {
-    return value/100;
-}
-
 function allClear() {
     displayValue = "0";
     mathStatement = "";
@@ -59,7 +55,6 @@ function allClear() {
 
     return displayValue, mathStatement, operands, operator, operatorFlag, submitFlag;
 }
-
 
 function resetDisplay () {
     numberDisplay.textContent = "";
@@ -77,6 +72,10 @@ function allClear() {
 
 function deleteDigit() {
     numberDisplay.textContent = numberDisplay.textContent.slice(0, -1);
+}
+
+function getPercent() {
+    numberDisplay.textContent = Number(numberDisplay.textContent) / 100;
 }
 
 function appendNumber(number) {
@@ -102,6 +101,11 @@ let secondOperand;
 let operator = "";
 let resetNumDisplay = false;
 
+allClearButton.addEventListener("click", () => allClear());
+deleteButton.addEventListener("click", () => deleteDigit());
+percentButton.addEventListener("click", () => getPercent());
+
+
 operandButtons.forEach(button => {
     button.addEventListener("click", function(e) {
         appendNumber(e.target.value)
@@ -113,6 +117,3 @@ operatorButtons.forEach(button => {
         selectOperator(e);
     })
 });
-
-allClearButton.addEventListener("click", () => allClear());
-deleteButton.addEventListener("click", () => deleteDigit());
