@@ -45,7 +45,8 @@ let displayValue = "0";
 let mathStatement = "";
 let operands = [];
 let operator = "";
-let operation = {};
+let operatorFlag = false;
+let submitFlag = false;
 buttons.forEach(button => {
     button.addEventListener("click", function(e) {
 
@@ -54,11 +55,18 @@ buttons.forEach(button => {
             mathStatement = "";
             operands = [];
             operator = "";
+            operatorFlag = false;
+            submitFlag = false;
         }
 
         if (e.target.className === "operand") {
-            if (displayValue === "0") {
+            if (displayValue === "0" || operatorFlag) {
                 displayValue = e.target.value;
+                operatorFlag = false;
+            } else if (submitFlag) {
+                displayValue = e.target.value;
+                mathStatement = "";
+                submitFlag = false;
             } else {
                 displayValue += e.target.value;
             }
@@ -68,18 +76,17 @@ buttons.forEach(button => {
             operator = e.target.value;
             operands.push(Number(displayValue));
             mathStatement = `${operands[0]} ${operator}`;
-            displayValue = "";      
-
-            console.log(operator)
+            operatorFlag = true;
         }
 
         if (e.target.className === "submit") {
             operands.push(Number(displayValue));
 
-            let result = operate(operands[0], operands[1], operator);
-        
-            console.log(result)
+            displayValue = operate(operands[0], operands[1], operator);
+            mathStatement = `${operands[0]} ${operator} ${operands[1]} =`;
 
+            operands = [];
+            submitFlag = true;
         }
 
         numberDisplay.textContent = displayValue;
