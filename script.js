@@ -69,7 +69,8 @@ function resetDisplay () {
 function allClear() {
     numberDisplay.textContent = "0";
     operationDisplay.textContent = "";
-    operands = [];
+    firstOperand = "";
+    secondOperand = "";
     operator = "";
     resetNumDisplay = false;
 }
@@ -81,12 +82,19 @@ function appendNumber(number) {
     numberDisplay.textContent += number;
 };
 
+function selectOperator(e) {
+    operator = e.target.value;
+    firstOperand = numberDisplay.textContent;
+    operationDisplay.textContent = `${firstOperand} ${operator}`;
+    resetNumDisplay = true;
+}
 
 
 numberDisplay.textContent = "0";
 operationDisplay.textContent = "";
 
-let operands = [];
+let firstOperand;
+let secondOperand;
 let operator = "";
 let resetNumDisplay = false;
 
@@ -98,12 +106,8 @@ operandButtons.forEach(button => {
 
 operatorButtons.forEach(button => {
     button.addEventListener("click", function(e) {
-        operator = e.target.value;
-        operands.push(numberDisplay.textContent);
-        operationDisplay.textContent = `${operands[0]} ${operator}`;
-        resetNumDisplay = true;
+        selectOperator(e);
     })
 });
-
 
 allClearButton.addEventListener("click", () => allClear());
