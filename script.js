@@ -42,29 +42,37 @@ function operate(a, b, operator) {
 
 
 let displayValue = "0";
-let operationValue = "";
+let mathStatement = "";
+let operands = [];
+let operator = "";
 buttons.forEach(button => {
     button.addEventListener("click", function(e) {
 
         if (e.target.id === "AC") {
             displayValue = "0";
-            operationValue = "";
+            mathStatement = "";
+            operands = [];
+            operator = "";
         }
 
         if (e.target.className === "operand") {
-            if (displayValue[0] === "0") {
-                displayValue = "";
+            if (displayValue === "0") {
+                displayValue = e.target.value;
+            } else {
+                displayValue += e.target.value;
             }
-
-            displayValue += e.target.value;
         }
 
         if (e.target.className === "operator") {
-            operationValue = `${displayValue} ${e.target.value}`;
+            operator = e.target.value;
+            operands.push(displayValue);
+            mathStatement = `${operands[0]} ${operator}`;
+            displayValue = "";
+            
         }
 
         numberDisplay.textContent = displayValue;
-        operationDisplay.textContent = operationValue;
+        operationDisplay.textContent = mathStatement;
 
     });
 })
