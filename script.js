@@ -1,6 +1,7 @@
 const buttons = document.querySelectorAll("button");
 const numberDisplay = document.querySelector(".number-display");
 const operationDisplay = document.querySelector(".operation-display");
+const allClear = document.getElementById("AC");
 
 
 function add(a, b) {
@@ -45,19 +46,25 @@ let operationValue = "";
 buttons.forEach(button => {
     button.addEventListener("click", function(e) {
 
+        if (e.target.id === "AC") {
+            displayValue = "0";
+            operationValue = "";
+        }
+
         if (e.target.className === "operand") {
             if (displayValue[0] === "0") {
                 displayValue = "";
             }
 
             displayValue += e.target.value;
-            numberDisplay.textContent = displayValue;
         }
 
         if (e.target.className === "operator") {
             operationValue = `${displayValue} ${e.target.value}`;
-            operationDisplay.textContent = operationValue;
         }
+
+        numberDisplay.textContent = displayValue;
+        operationDisplay.textContent = operationValue;
 
     });
 })
