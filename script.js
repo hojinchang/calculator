@@ -3,7 +3,7 @@ const operatorButtons = document.querySelectorAll(".operator");
 const numberDisplay = document.querySelector(".number-display");
 const operationDisplay = document.querySelector(".operation-display");
 const allClearButton = document.getElementById("AC");
-const deleteButton = document.getElementById("id");
+const deleteButton = document.getElementById("delete");
 const percentButton = document.getElementById("percent");
 const decimalButton = document.getElementById("decimal");
 const polarityButton = document.getElementById("polarity");
@@ -75,6 +75,10 @@ function allClear() {
     resetNumDisplay = false;
 }
 
+function deleteDigit() {
+    numberDisplay.textContent = numberDisplay.textContent.slice(0, -1);
+}
+
 function appendNumber(number) {
     if (numberDisplay.textContent === "0" || resetNumDisplay) {
         resetDisplay()
@@ -111,3 +115,4 @@ operatorButtons.forEach(button => {
 });
 
 allClearButton.addEventListener("click", () => allClear());
+deleteButton.addEventListener("click", () => deleteDigit());
