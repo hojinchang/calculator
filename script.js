@@ -89,8 +89,15 @@ function appendNumber(number) {
 };
 
 function selectOperator(e) {
+    if (firstOperand !== null && operator !== null) {
+        secondOperand = numberDisplay.textContent;
+        operation();
+        firstOperand = result;
+    } else {
+        firstOperand = numberDisplay.textContent;
+    }
+
     operator = e.target.value;
-    firstOperand = numberDisplay.textContent;
     operationDisplay.textContent = `${firstOperand} ${operator}`;
     resetNumDisplay = true;
 }
@@ -115,6 +122,7 @@ function operation() {
     }
 
     numberDisplay.textContent = String(result).substring(0, 10);
+    operator = null;
     resetNumDisplay = true
 }
 
@@ -144,7 +152,7 @@ operatorButtons.forEach(button => {
 });
 
 submitButton.addEventListener("click", () => {
-    if (operator !== null) {
+    if (operator !== null && firstOperand !== null) {
         secondOperand = numberDisplay.textContent;
         operationDisplay.textContent = `${firstOperand} ${operator} ${secondOperand} =`;
         operation();
