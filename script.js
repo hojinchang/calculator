@@ -54,9 +54,9 @@ function resetDisplay () {
 function allClear() {
     numberDisplay.textContent = "0";
     operationDisplay.textContent = "";
-    firstOperand = "";
-    secondOperand = "";
-    operator = "";
+    firstOperand = null;
+    secondOperand = null;
+    operator = null;
     resetNumDisplay = false;
 }
 
@@ -123,9 +123,9 @@ numberDisplay.textContent = "0";
 operationDisplay.textContent = "";
 
 const maxDigits = 10;
-let firstOperand;
-let secondOperand;
-let operator = "";
+let firstOperand = null;
+let secondOperand = null;
+let operator = null;
 let resetNumDisplay = false;
 let result;
 
@@ -144,7 +144,9 @@ operatorButtons.forEach(button => {
 });
 
 submitButton.addEventListener("click", () => {
-    secondOperand = numberDisplay.textContent;
-    operationDisplay.textContent = `${firstOperand} ${operator} ${secondOperand} =`;
-    operation();
+    if (operator !== null) {
+        secondOperand = numberDisplay.textContent;
+        operationDisplay.textContent = `${firstOperand} ${operator} ${secondOperand} =`;
+        operation();
+    }
 })
