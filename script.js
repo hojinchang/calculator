@@ -1,4 +1,5 @@
-const buttons = document.querySelectorAll("button");
+const operandButtons = document.querySelectorAll(".operand");
+const operatorButtons = document.querySelectorAll(".operator");
 const numberDisplay = document.querySelector(".number-display");
 const operationDisplay = document.querySelector(".operation-display");
 const allClearButton = document.getElementById("AC");
@@ -60,68 +61,49 @@ function allClear() {
 }
 
 
-let displayValue = "0";
-let mathStatement = "";
+function resetDisplay () {
+    numberDisplay.textContent = "";
+    resetNumDisplay = false;
+}
+
+function allClear() {
+    numberDisplay.textContent = "0";
+    operationDisplay.textContent = "";
+    operands = [];
+    operator = "";
+    resetNumDisplay = false;
+}
+
+function appendNumber(number) {
+    if (numberDisplay.textContent === "0" || resetNumDisplay) {
+        resetDisplay()
+    }
+    numberDisplay.textContent += number;
+};
+
+
+
+numberDisplay.textContent = "0";
+operationDisplay.textContent = "";
+
 let operands = [];
 let operator = "";
-let operatorFlag = false;
-let submitFlag = false;
-buttons.forEach(button => {
+let resetNumDisplay = false;
+
+operandButtons.forEach(button => {
     button.addEventListener("click", function(e) {
+        appendNumber(e.target.value)
+    })
+});
 
-        if (e.target.id === "AC") {
-            displayValue, mathStatement, operands, operator, operatorFlag, submitFlag = allClear();
-        }
+operatorButtons.forEach(button => {
+    button.addEventListener("click", function(e) {
+        operator = e.target.value;
+        operands.push(numberDisplay.textContent);
+        operationDisplay.textContent = `${operands[0]} ${operator}`;
+        resetNumDisplay = true;
+    })
+});
 
-        if (e.target.id === "delete" && displayValue !== "0" && !operatorFlag) {
-            displayValue = displayValue.slice(0, -1);
-        }
 
-        if (e.target.id === "percent") {
-            displayValue = getPercent(Number(displayValue));
-        }
-
-        if (e.target.id === "decimal") {
-            displayValue = displayValue + ".";
-        }
-
-        if (e.target.id === "polarity") {
-            displayValue = displayValue * -1;
-        }
-
-        if (e.target.className === "operand") {
-            if (displayValue === "0" || operatorFlag) {
-                displayValue = e.target.value;
-                operatorFlag = false;
-            } else {
-                displayValue += e.target.value;
-            }
-        }
-
-        if (e.target.className === "operator") {
-            operator = e.target.value;
-            operands.push(Number(displayValue));
-            mathStatement = `${operands[0]} ${operator}`;
-            operatorFlag = true;
-        }
-
-        if (e.target.className === "submit") {
-            operands.push(Number(displayValue));
-
-            displayValue = operate(operands[0], operands[1], operator);
-            mathStatement = `${operands[0]} ${operator} ${operands[1]} =`;
-
-            operands = [];
-            submitFlag = true;
-        }
-
-        numberDisplay.textContent = displayValue;
-        operationDisplay.textContent = mathStatement;
-
-        if (submitFlag) {
-            displayValue, mathStatement, operands, operator, operatorFlag, submitFlag = allClear();
-            submitFlag = false;
-        }
-
-    });
-})
+allClearButton.addEventListener("click", () => allClear());
