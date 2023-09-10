@@ -3,6 +3,7 @@ const numberDisplay = document.querySelector(".number-display");
 const operationDisplay = document.querySelector(".operation-display");
 const allClearButton = document.getElementById("AC");
 const deleteButton = document.getElementById("id");
+const percentButton = document.getElementById("percent");
 
 
 function add(a, b) {
@@ -41,6 +42,10 @@ function operate(a, b, operator) {
     return result;
 }
 
+function getPercent(value) {
+    return value/100;
+}
+
 function allClear() {
     displayValue = "0";
     mathStatement = "";
@@ -68,6 +73,10 @@ buttons.forEach(button => {
 
         if (e.target.id === "delete") {
             displayValue = displayValue.slice(0, -1);
+        }
+
+        if (e.target.id == "percent") {
+            displayValue = getPercent(Number(displayValue));
         }
 
         if (e.target.className === "operand") {
