@@ -7,6 +7,7 @@ const deleteButton = document.getElementById("delete");
 const percentButton = document.getElementById("percent");
 const decimalButton = document.getElementById("decimal");
 const polarityButton = document.getElementById("polarity");
+const submitButton = document.querySelector(".submit");
 
 
 function add(a, b) {
@@ -100,6 +101,29 @@ function selectOperator(e) {
     resetNumDisplay = true;
 }
 
+function operation() {
+    firstOperand = Number(firstOperand);
+    secondOperand = Number(secondOperand);
+
+    switch (operator) {
+        case "+":
+            result = add(firstOperand, secondOperand);
+            break;
+        case "-":
+            result = subtract(firstOperand, secondOperand);
+            break;
+        case "×":
+            result = multiply(firstOperand, secondOperand);
+            break;
+        case "÷":
+            result = divide(firstOperand, secondOperand);
+            break;
+    }
+
+    numberDisplay.textContent = result;
+    resetNumDisplay = true
+}
+
 
 numberDisplay.textContent = "0";
 operationDisplay.textContent = "";
@@ -108,6 +132,7 @@ let firstOperand;
 let secondOperand;
 let operator = "";
 let resetNumDisplay = false;
+let result;
 
 allClearButton.addEventListener("click", () => allClear());
 deleteButton.addEventListener("click", () => deleteDigit());
@@ -122,3 +147,9 @@ operandButtons.forEach(button => {
 operatorButtons.forEach(button => {
     button.addEventListener("click", e => selectOperator(e))
 });
+
+submitButton.addEventListener("click", () => {
+    secondOperand = numberDisplay.textContent;
+    operationDisplay.textContent = `${firstOperand} ${operator} ${secondOperand} =`;
+    operation();
+})
