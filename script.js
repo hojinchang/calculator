@@ -1,4 +1,5 @@
 const buttons = document.querySelectorAll("button");
+const numberDisplay = document.querySelector(".number-display");
 
 
 function add(a, b) {
@@ -38,8 +39,18 @@ function operate(a, b, operator) {
 }
 
 
+let displayValue = "0";
 buttons.forEach(button => {
     button.addEventListener("click", function(e) {
-        console.log(e.target.value);
+
+        if (e.target.className === "operand") {
+            if (displayValue[0] === "0") {
+                displayValue = "";
+            }
+
+            displayValue += e.target.value;
+            numberDisplay.textContent = displayValue;
+        }
+
     });
 })
