@@ -78,6 +78,10 @@ function getPercent() {
     numberDisplay.textContent = Number(numberDisplay.textContent) / 100;
 }
 
+function appendDecimal() {
+    numberDisplay.textContent += ".";
+}
+
 function appendNumber(number) {
     if (numberDisplay.textContent === "0" || resetNumDisplay) {
         resetDisplay()
@@ -104,16 +108,12 @@ let resetNumDisplay = false;
 allClearButton.addEventListener("click", () => allClear());
 deleteButton.addEventListener("click", () => deleteDigit());
 percentButton.addEventListener("click", () => getPercent());
-
+decimalButton.addEventListener("click", () => appendDecimal());
 
 operandButtons.forEach(button => {
-    button.addEventListener("click", function(e) {
-        appendNumber(e.target.value)
-    })
+    button.addEventListener("click", e => appendNumber(e.target.value))
 });
 
 operatorButtons.forEach(button => {
-    button.addEventListener("click", function(e) {
-        selectOperator(e);
-    })
+    button.addEventListener("click", e => selectOperator(e))
 });
