@@ -1,5 +1,6 @@
 const buttons = document.querySelectorAll("button");
 const numberDisplay = document.querySelector(".number-display");
+const operationDisplay = document.querySelector(".operation-display");
 
 
 function add(a, b) {
@@ -40,6 +41,7 @@ function operate(a, b, operator) {
 
 
 let displayValue = "0";
+let operationValue = "";
 buttons.forEach(button => {
     button.addEventListener("click", function(e) {
 
@@ -50,6 +52,11 @@ buttons.forEach(button => {
 
             displayValue += e.target.value;
             numberDisplay.textContent = displayValue;
+        }
+
+        if (e.target.className === "operator") {
+            operationValue = `${displayValue} ${e.target.value}`;
+            operationDisplay.textContent = operationValue;
         }
 
     });
