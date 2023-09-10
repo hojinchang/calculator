@@ -2,6 +2,7 @@ const buttons = document.querySelectorAll("button");
 const numberDisplay = document.querySelector(".number-display");
 const operationDisplay = document.querySelector(".operation-display");
 const allClearButton = document.getElementById("AC");
+const deleteButton = document.getElementById("id");
 
 
 function add(a, b) {
@@ -65,14 +66,14 @@ buttons.forEach(button => {
             displayValue, mathStatement, operands, operator, operatorFlag, submitFlag = allClear();
         }
 
+        if (e.target.id === "delete") {
+            displayValue = displayValue.slice(0, -1);
+        }
+
         if (e.target.className === "operand") {
             if (displayValue === "0" || operatorFlag) {
                 displayValue = e.target.value;
                 operatorFlag = false;
-            } else if (submitFlag) {
-                displayValue = e.target.value;
-                mathStatement = "";
-                submitFlag = false;
             } else {
                 displayValue += e.target.value;
             }
@@ -97,6 +98,11 @@ buttons.forEach(button => {
 
         numberDisplay.textContent = displayValue;
         operationDisplay.textContent = mathStatement;
+
+        if (submitFlag) {
+            displayValue, mathStatement, operands, operator, operatorFlag, submitFlag = allClear();
+            submitFlag = false;
+        }
 
     });
 })
