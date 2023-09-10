@@ -23,16 +23,16 @@ function divide(a, b) {
 function operate(a, b, operator) {
     let result;
     switch (operator) {
-        case "add":
+        case "+":
             result = add(a, b);
             break;
-        case "subtract":
+        case "-":
             result = subtract(a, b);
             break;
-        case "multiply":
+        case "x":
             result = multiply(a, b);
             break;
-        case "divide":
+        case "÷":
             result = divide(a, b);
             break;
     }
@@ -45,6 +45,7 @@ let displayValue = "0";
 let mathStatement = "";
 let operands = [];
 let operator = "";
+let operation = {};
 buttons.forEach(button => {
     button.addEventListener("click", function(e) {
 
@@ -65,10 +66,20 @@ buttons.forEach(button => {
 
         if (e.target.className === "operator") {
             operator = e.target.value;
-            operands.push(displayValue);
+            operands.push(Number(displayValue));
             mathStatement = `${operands[0]} ${operator}`;
-            displayValue = "";
-            
+            displayValue = "";      
+
+            console.log(operator)
+        }
+
+        if (e.target.className === "submit") {
+            operands.push(Number(displayValue));
+
+            let result = operate(operands[0], operands[1], operator);
+        
+            console.log(result)
+
         }
 
         numberDisplay.textContent = displayValue;
