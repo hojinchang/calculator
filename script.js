@@ -5,6 +5,7 @@ const allClearButton = document.getElementById("AC");
 const deleteButton = document.getElementById("id");
 const percentButton = document.getElementById("percent");
 const decimalButton = document.getElementById("decimal");
+const polarityButton = document.getElementById("polarity");
 
 
 function add(a, b) {
@@ -82,6 +83,10 @@ buttons.forEach(button => {
 
         if (e.target.id === "decimal") {
             displayValue = displayValue + ".";
+        }
+
+        if (e.target.id === "polarity") {
+            displayValue = displayValue * -1;
         }
 
         if (e.target.className === "operand") {
