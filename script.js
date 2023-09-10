@@ -82,6 +82,10 @@ function appendDecimal() {
     numberDisplay.textContent += ".";
 }
 
+function changePolarity() {
+    numberDisplay.textContent = Number(numberDisplay.textContent) * -1;
+}
+
 function appendNumber(number) {
     if (numberDisplay.textContent === "0" || resetNumDisplay) {
         resetDisplay()
@@ -109,6 +113,7 @@ allClearButton.addEventListener("click", () => allClear());
 deleteButton.addEventListener("click", () => deleteDigit());
 percentButton.addEventListener("click", () => getPercent());
 decimalButton.addEventListener("click", () => appendDecimal());
+polarityButton.addEventListener("click", () => changePolarity());
 
 operandButtons.forEach(button => {
     button.addEventListener("click", e => appendNumber(e.target.value))
