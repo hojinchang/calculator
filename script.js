@@ -1,7 +1,7 @@
 const buttons = document.querySelectorAll("button");
 const numberDisplay = document.querySelector(".number-display");
 const operationDisplay = document.querySelector(".operation-display");
-const allClear = document.getElementById("AC");
+const allClearButton = document.getElementById("AC");
 
 
 function add(a, b) {
@@ -40,6 +40,17 @@ function operate(a, b, operator) {
     return result;
 }
 
+function allClear() {
+    displayValue = "0";
+    mathStatement = "";
+    operands = [];
+    operator = "";
+    operatorFlag = false;
+    submitFlag = false;
+
+    return displayValue, mathStatement, operands, operator, operatorFlag, submitFlag;
+}
+
 
 let displayValue = "0";
 let mathStatement = "";
@@ -51,12 +62,7 @@ buttons.forEach(button => {
     button.addEventListener("click", function(e) {
 
         if (e.target.id === "AC") {
-            displayValue = "0";
-            mathStatement = "";
-            operands = [];
-            operator = "";
-            operatorFlag = false;
-            submitFlag = false;
+            displayValue, mathStatement, operands, operator, operatorFlag, submitFlag = allClear();
         }
 
         if (e.target.className === "operand") {
