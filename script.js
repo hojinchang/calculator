@@ -82,7 +82,10 @@ function appendNumber(number) {
     if (numberDisplay.textContent === "0" || resetNumDisplay) {
         resetDisplay()
     }
-    numberDisplay.textContent += number;
+
+    if (numberDisplay.textContent.length < maxDigits) {
+        numberDisplay.textContent += number;
+    }
 };
 
 function selectOperator(e) {
@@ -111,7 +114,7 @@ function operation() {
             break;
     }
 
-    numberDisplay.textContent = result;
+    numberDisplay.textContent = String(result).substring(0, 10);
     resetNumDisplay = true
 }
 
@@ -119,6 +122,7 @@ function operation() {
 numberDisplay.textContent = "0";
 operationDisplay.textContent = "";
 
+const maxDigits = 10;
 let firstOperand;
 let secondOperand;
 let operator = "";
