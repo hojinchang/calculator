@@ -46,17 +46,6 @@ function operate(a, b, operator) {
     return result;
 }
 
-function allClear() {
-    displayValue = "0";
-    mathStatement = "";
-    operands = [];
-    operator = "";
-    operatorFlag = false;
-    submitFlag = false;
-
-    return displayValue, mathStatement, operands, operator, operatorFlag, submitFlag;
-}
-
 function resetDisplay () {
     numberDisplay.textContent = "";
     resetNumDisplay = false;
