@@ -1,6 +1,10 @@
 body {
     background-color: #e1dbd6;
     font-family: "Roboto Mono";
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    min-height:  100vh;
 }
 
 .calculator {
@@ -74,4 +78,19 @@ button {
 
 .submit {
     background-color: #9cadce;
+}
+
+
+footer {
+    background-color: #3B3B3B;
+    color: #FFFFFF;
+    position: relative;
+    bottom: 0px;
+    width: 100%;
+
+    margin-top: auto;
+}
+
+.footer-text {
+    text-align: center;
 }
