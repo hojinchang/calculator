@@ -10,4 +10,4 @@ The calculator also has functional buttons such as all-clear (AC), delete, perce
 
 ## View the webpage
 
-View the calculator webpage at: https://hojinchang.github.io/calculator/
+View the calculator webpage [here](https://hojinchang.github.io/calculator/).
