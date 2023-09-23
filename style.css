@@ -7,6 +7,10 @@ body {
     min-height:  100vh;
 }
 
+main {
+    margin-bottom: 35px;
+}
+
 .calculator {
     background-color:  #C1CCCA;
     width: 400px;
@@ -93,4 +97,14 @@ footer {
 
 .footer-text {
     text-align: center;
+}
+
+a {
+    text-decoration: none;
+    font-weight: bold;
+    color: #FFFFFF;
+}
+
+a:hover {
+    text-decoration: underline;
 }
